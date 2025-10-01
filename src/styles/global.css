@@ -1,125 +1,136 @@
 @import "tailwindcss";
 
 @font-face {
-  font-family: "Matter";
-  src: url("/fonts/matter/Matter-Thin.woff2") format("woff2");
-  font-weight: 100;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Matter";
-  src: url("/fonts/matter/Matter-Light.woff2") format("woff2");
-  font-weight: 300;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Matter";
-  src: url("/fonts/matter/Matter-Regular.woff2") format("woff2");
+  font-family: "Berkeley Mono";
+  src: url("/fonts/berkeley-mono.woff2") format("woff2");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 
-@font-face {
-  font-family: "Matter";
-  src: url("/fonts/matter/Matter-Medium.woff2") format("woff2");
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Matter";
-  src: url("/fonts/matter/Matter-SemiBold.woff2") format("woff2");
-  font-weight: 600;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Matter";
-  src: url("/fonts/matter/Matter-Bold.woff2") format("woff2");
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Matter";
-  src: url("/fonts/matter/Matter-Heavy.woff2") format("woff2");
-  font-weight: 800;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Matter";
-  src: url("/fonts/matter/Matter-Black.woff2") format("woff2");
-  font-weight: 900;
-  font-style: normal;
-  font-display: swap;
-}
-
 @theme {
-  --font-sans: "Matter", "system-ui";
+  --font-sans: "Inter", "system-ui", sans-serif;
+  --font-mono: "Berkeley Mono", "Menlo", "Monaco", "Consolas", "Liberation Mono",
+    "Courier New", monospace;
+
+  --color-dark: oklch(0.065 0 0);
+  --color-text: oklch(0.665 0 0);
+  --color-heading: oklch(0.931 0 0);
+  --color-border: oklch(0.931 0 0);
+  --color-link-underline: oklch(0.436 0 0);
+  --color-code-border: oklch(0.33 0 0);
+
+  --color-alert-note: oklch(0.65 0.15 240);
+  --color-alert-tip: oklch(0.65 0.15 140);
+  --color-alert-important: oklch(0.65 0.15 280);
+  --color-alert-warning: oklch(0.65 0.15 60);
+  --color-alert-caution: oklch(0.65 0.15 20);
+
+  --transition-colors: color 0.5s ease-in-out, background-color 0.5s ease-in-out;
+  --duration-500: 500ms;
+
+  --spacing-nav-top: 2.5rem;
+  --spacing-article-y: 5rem;
+  --spacing-article-width: 40%;
+  --spacing-back-link-top: 5rem;
+  --spacing-back-link-left: 10rem;
+
+  --text-journal-size: 16rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-lg: 1.125rem;
 }
 
 @layer components {
   .custom-defaults {
+    @apply text-base;
+
     p {
-      @apply text-base;
+      @apply text-base mb-7;
     }
 
     h1 {
-      @apply text-5xl font-semibold py-3;
+      @apply text-2xl font-semibold text-heading mb-1;
     }
 
     h2 {
-      @apply text-3xl font-medium py-2;
+      @apply text-lg font-medium text-heading mb-1 mt-6;
     }
 
     h3 {
-      @apply text-xl py-1;
+      @apply text-base font-medium text-heading mb-1 mt-6;
     }
 
     pre {
-      @apply rounded-md px-3 py-2;
+      @apply rounded-md px-3 py-2 my-6 bg-gray-800 font-mono text-sm border-2 border-neutral-900;
+    }
+
+    code:not(pre code) {
+      @apply rounded-md border-[1.5px] border-code-border font-mono px-1 text-[0.8125rem] py-0.5;
     }
 
     ul {
-      @apply list-disc list-inside;
+      @apply list-disc list-inside mb-7;
     }
 
     ol {
-      @apply list-decimal list-inside;
+      @apply list-decimal list-inside mb-7;
+    }
+
+    a {
+      @apply underline decoration-[oklch(0.436_0_0)] hover:text-heading hover:decoration-heading transition-colors duration-300 underline-offset-3;
     }
 
     kbd {
-      @apply bg-white/20 px-1 py-0.5 rounded-md lowercase;
+      @apply bg-white/20 px-1 py-0.5 rounded-md lowercase font-mono text-sm;
     }
 
     mark {
       @apply bg-yellow-300;
 
-      .danger {
+      &.danger {
         @apply bg-red-300;
       }
 
-      .success {
+      &.success {
         @apply bg-emerald-300;
       }
     }
 
     blockquote {
-      @apply border-l-4 border-white px-2;
+      @apply border-l-4 border-heading px-2 my-6;
+    }
+
+    .markdown-alert {
+      @apply px-4 my-6 border-l-4;
+    }
+
+    .markdown-alert-note {
+      @apply border-alert-note;
+    }
+
+    .markdown-alert-tip {
+      @apply border-alert-tip;
+    }
+
+    .markdown-alert-important {
+      @apply border-alert-important;
+    }
+
+    .markdown-alert-warning {
+      @apply border-alert-warning;
+    }
+
+    .markdown-alert-caution {
+      @apply border-alert-caution;
+    }
+
+    .markdown-alert-title {
+      @apply font-semibold mb-1 text-heading;
     }
 
     hr {
-      @apply pb-2;
+      @apply pb-6 mb-7;
     }
   }
 }

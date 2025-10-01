@@ -7,38 +7,24 @@ import { Image } from "astro:assets";
 
 type Props = CollectionEntry<"blog">["data"];
 
-const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
+const { title, description, heroImage } = Astro.props;
 ---
 
 <html lang="en">
   <head>
     <BaseHead title={title} description={description} />
   </head>
-  <body>
-    <a href="/" class="text-white absolute top-20 left-40">&larr; Home</a>
-    <main class="flex items-center justify-center bg-black text-white">
-      <article class="py-20 w-1/2 text-justify">
-        <div class="hero-image">
-          {
-            heroImage && (
-              <Image width={1020} height={510} src={heroImage} alt="" />
-            )
-          }
-        </div>
-        <div class="prose custom-defaults space-y-3">
-          <div class="title">
-            <div class="date">
-              <!-- <FormattedDate date={pubDate} />
-							{
-								updatedDate && (
-									<div class="last-updated-on">
-										Last updated on <FormattedDate date={updatedDate} />
-									</div>
-								)
-							} -->
-            </div>
-            <h1>{title}</h1>
-          </div>
+  <body class="bg-dark text-text">
+    <a href="/" class="absolute top-20 left-40">&larr; Home</a>
+    <main class="flex items-center justify-center text-text">
+      <article class="py-20 w-2/5 text-left">
+        {
+          heroImage && (
+            <Image width={1020} height={510} src={heroImage} alt="" />
+          )
+        }
+        <div class="prose custom-defaults">
+          <h1>{title}</h1>
           <slot />
         </div>
       </article>

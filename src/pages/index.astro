@@ -17,14 +17,14 @@ const posts = (await getCollection("blog")).sort(
       description={"A friendly, homegrown blog by your fellow internet user, PyBash."}
     />
   </head>
-  <body>
+  <body class="bg-dark text-text">
     <Header />
     <ul class="flex flex-col items-center justify-center pb-24 pt-12">
       {
         posts.map((post) => (
           <a
             href={`/writing/${post.id}`}
-            class="first:border-t border-b border-black py-4 w-1/2 transition-colors ease-in-out duration-500 hover:bg-black hover:text-white px-3 flex items-center justify-between"
+            class="first:border-t border-b border-border py-4 w-1/2 transition-colors ease-in-out duration-500 hover:bg-border hover:text-dark px-3 flex items-center justify-between"
           >
             <div>{post.data.title}</div>
             <div>

@@ -1,11 +1,11 @@
 ---
-import { Image } from "astro:assets";
-import headerImage from "../assets/monochrome-grass.jpg";
 ---
 
-<header class="h-full bg-black">
+<header class="h-full bg-dark">
   <nav class="text-white h-full">
-    <div class="flex items-center justify-around text-xl uppercase pt-10">
+    <div
+      class="flex items-center justify-around text-xl uppercase pt-10 font-mono"
+    >
       <a
         href="https://pybash.xyz"
         class="text-white/80 hover:text-white transition-colors duration-500 ease-in-out"
@@ -18,14 +18,10 @@ import headerImage from "../assets/monochrome-grass.jpg";
         >Social</a
       >
     </div>
-    <div class="text-[16rem] uppercase text-center font-bold leading mt-36">
+    <div
+      class="text-[16rem] uppercase text-center font-bold leading my-36 font-mono"
+    >
       Journal
     </div>
-    <Image
-      src={headerImage}
-      alt="monochrome grass"
-      class="invert object-top"
-      loading={"eager"}
-    />
   </nav>
 </header>
